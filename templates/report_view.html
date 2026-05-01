@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股票報告 - {{ code }}</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #080e18;
+  --card: #131f2e;
+  --border: #2d3f55;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+}
+body { background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; }
+.topbar {
+  height: 48px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 16px;
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+}
+.back-btn {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--accent); text-decoration: none;
+  font-size: 13px; font-weight: 600;
+  padding: 6px 10px; border-radius: 6px;
+  border: 1px solid rgba(59,130,246,0.3);
+  transition: background 0.15s;
+}
+.back-btn:hover { background: rgba(59,130,246,0.1); }
+.topbar-title { font-size: 14px; color: var(--muted); }
+.topbar-spacer { flex: 1; }
+.open-btn {
+  color: var(--muted); text-decoration: none;
+  font-size: 12px; padding: 4px 10px;
+  border-radius: 6px; border: 1px solid var(--border);
+  transition: border-color 0.15s;
+}
+.open-btn:hover { border-color: var(--accent); color: var(--accent); }
+iframe {
+  position: fixed;
+  top: 48px; left: 0; right: 0; bottom: 0;
+  width: 100%; height: calc(100vh - 48px);
+  border: none;
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back-btn" href="/">&#8592; 返回</a>
+  <div class="topbar-title">{{ code }} 分析報告</div>
+  <div class="topbar-spacer"></div>
+  <a class="open-btn" href="/report/{{ code }}/raw" target="_blank">&#8599; 獨立開啟</a>
+</div>
+<iframe src="/report/{{ code }}/raw" title="{{ code }} 分析報告"></iframe>
+</body>
+</html>
